@@ -13,11 +13,31 @@ services:
       - MYSQL_PORT=3306
       - MYSQL_USER=root
       - MYSQL_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MINIO_SERVER_ACCESS_KEY=minio
+      - MINIO_SERVER_SECRET_KEY=minio123
+      - BASE_URI=phabricator.local
+    volumes: 
+      - ph-repo:/var/repo
   ph-database:
     image: mariadb:10.5.1
     restart: always
+    volumes:
+      - database-volume:/var/lib/mysql
     environment:
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+  ph-storage:
+    image: minio/minio
+    restart: always
+    command: server /data
+    ports: 
+      - 9000:9000
+    volumes: 
+      - storage-server:/data
+    environment:
+      - MINIO_ACCESS_KEY=minio
+      - MINIO_SECRET_KEY=minio123
 
-
-
+volumes:
+  database-volume:
+  storage-server:
+  ph-repo:
