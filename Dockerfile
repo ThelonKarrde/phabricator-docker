@@ -19,7 +19,8 @@ COPY ./configs/nginx.conf /etc/nginx/sites-availaible/phabricator.conf
 COPY ./configs/www.conf /etc/php/7.4/fpm/pool.d/www.conf
 COPY ./configs/supervisord.conf /etc/supervisord.conf
 RUN ln -s /etc/nginx/sites-availaible/phabricator.conf /etc/nginx/sites-enabled/phabricator.conf
+COPY ./scripts/startup.sh /startup.sh
 
 RUN rm -rf /var/cache/apt
 
-CMD ["/usr/bin/supervisord", "-n", "-c", "/etc/supervisord.conf"]
+ENTRYPOINT [ "/startup.sh" ]

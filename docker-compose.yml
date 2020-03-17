@@ -1,0 +1,23 @@
+version: '3.7'
+
+services:
+  ph-web:
+    image: rivshiell/phabricator-docker:latest
+    restart: always
+    ports:
+      - 80:80
+    depends_on:
+      - ph-database
+    environment: 
+      - MYSQL_HOST=ph-database
+      - MYSQL_PORT=3306
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=${MYSQL_ROOT_PASSWORD}
+  ph-database:
+    image: mariadb:10.5.1
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+
+
+
