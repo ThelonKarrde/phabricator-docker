@@ -12,12 +12,14 @@ sleep 30
 /var/www/phabric/phabricator/bin/config set amazon-s3.access-key $MINIO_SERVER_ACCESS_KEY
 /var/www/phabric/phabricator/bin/config set amazon-s3.endpoint ph-storage:9000
 /var/www/phabric/phabricator/bin/config set amazon-s3.region us-west-1
-#general parameters configuration
+# Update base uri
 /var/www/phabric/phabricator/bin/config set phabricator.base-uri "http://$BASE_URI/"
+sed "s/  server_name phabricator.local;/  server_name $BASE_URI;/g" /etc/nginx/sites-available//phabricator.conf > /etc/nginx/sites-available//phabricator.conf
+#sed "s/    return 301 \$scheme:\/\/phabricator.local$request_uri;"
+#general parameters configuration
 /var/www/phabric/phabricator/bin/config set storage.s3.bucket minio-storage
 /var/www/phabric/phabricator/bin/config set pygments.enabled true
 #setup db in not exists
 /var/www/phabric/phabricator/bin/storage upgrade --force
-
 #start supervisord
 /usr/bin/supervisord -n -c /etc/supervisord.conf
