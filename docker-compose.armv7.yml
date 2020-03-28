@@ -19,7 +19,7 @@ services:
     volumes: 
       - ph-repo:/var/repo
   ph-database:
-    image: linuxserver/mariadb:arm32v7-latest
+    image: yobasystems/alpine-mariadb
     restart: always
     volumes:
       - database-volume:/var/lib/mysql
