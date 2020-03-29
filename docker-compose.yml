@@ -15,7 +15,7 @@ services:
       - MYSQL_PASSWORD=${MYSQL_ROOT_PASSWORD}
       - MINIO_SERVER_ACCESS_KEY=minio
       - MINIO_SERVER_SECRET_KEY=minio123
-      - BASE_URI=phabricator.local
+      - BASE_URI=${BASE_URI}
     volumes: 
       - ph-repo:/var/repo
   ph-database:
