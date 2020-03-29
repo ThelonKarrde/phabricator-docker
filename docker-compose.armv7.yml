@@ -2,7 +2,7 @@ version: '3.7'
 
 services:
   ph-web:
-    image: rivshiell/phabricator-docker:latest
+    image: rivshiell/phabricator-docker:armv7
     restart: always
     ports:
       - 80:80
@@ -19,15 +19,15 @@ services:
     volumes: 
       - ph-repo:/var/repo
   ph-database:
-    image: mariadb:10.5.1
+    image: yobasystems/alpine-mariadb
     restart: always
     volumes:
       - database-volume:/var/lib/mysql
-      - ./configs/my.cnf:/etc/mysql/my.cnf
+      - ./configs/my.cnf:/etc/my.cnf.d/mariadb-server.cnf
     environment:
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
   ph-storage:
-    image: minio/minio
+    image: rivshiell/minio:armv7
     restart: always
     command: server /data
     ports: 

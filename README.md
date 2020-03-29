@@ -4,11 +4,15 @@
 
 This is unofficial docker image for Phabricator app. Configured as a single image with `supervisord`.  
 
+## Available OS/ARCH
+* `linux/amd64` | tag: `latest`
+* `linux/arm` | tag: `armv7`
+
 ## Configuration
 
 To startup Phabricator with a single command you need configured MySQL/MariaDB and S3 storage (Local server or AWS)
 
-Example command to start:
+#### Example command to start:
 ```
 docker run \
     --rm -p 80:80 \
@@ -24,11 +28,18 @@ docker run \
 ```
 
 
-To launch all components of Phabricator using `docker-compose` use following set of commands:
+#### To launch all components of Phabricator using `docker-compose` use following set of commands:
 ```
 export BASE_URI=yourdomain.com
 export MYSQL_ROOT_PASSWORD=changeme
 docker-compose up -d
+```
+
+#### To launch all components of Phabricator using `docker-compose` on ARM arch (for example Raspberry-pi) use following set of commands:
+```
+export BASE_URI=yourdomain.com
+export MYSQL_ROOT_PASSWORD=changeme
+docker-compose -f docker-compose.armv7.yml up -d
 ```
 
 ## Links
