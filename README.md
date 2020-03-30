@@ -2,9 +2,10 @@
 
 # Phabricator-Docker
 
-This is unofficial docker image for Phabricator app. Configured as a single image with `supervisord`.  
+This is an unofficial Docker image of Phabricator app.  
+Application configured as a single image with `supervisord` to control all necessary processes inside one docker container.  
 
-## Available OS/ARCH
+## Docker image available for OS/ARCH
 * `linux/amd64` | tag: `latest`
 * `linux/arm` | tag: `armv7`
 
@@ -28,14 +29,15 @@ docker run \
 ```
 
 
-#### To launch all components of Phabricator using `docker-compose` use following set of commands:
+### To launch all components of Phabricator using `docker-compose` use following set of commands:
+#### `amd64` arch:
 ```
 export BASE_URI=yourdomain.com
 export MYSQL_ROOT_PASSWORD=changeme
 docker-compose up -d
 ```
 
-#### To launch all components of Phabricator using `docker-compose` on ARM arch (for example Raspberry-pi) use following set of commands:
+#### `arm` arch:
 ```
 export BASE_URI=yourdomain.com
 export MYSQL_ROOT_PASSWORD=changeme
