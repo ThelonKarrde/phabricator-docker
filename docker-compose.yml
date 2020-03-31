@@ -5,8 +5,8 @@ services:
     image: rivshiell/phabricator-docker:latest
     restart: always
     ports:
-      - 22:22
-      - 80:80
+      - "22:22"
+      - "80:80"
     depends_on:
       - ph-database
     environment: 
