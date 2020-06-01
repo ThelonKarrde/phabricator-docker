@@ -16,7 +16,9 @@ To startup Phabricator with a single command you need configured MySQL/MariaDB a
 #### Example command to start:
 ```
 docker run \
-    --rm -p 80:80 \
+    --rm \
+    -p 80:80 \
+    -p 22:22 \
     --env MYSQL_HOST=mysqlhost.com \
     --env MYSQL_PORT=3306 \
     --env MYSQL_USER=root \

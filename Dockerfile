@@ -2,7 +2,7 @@ FROM debian:buster
 
 LABEL maintainer="aliaksandr.shulyak@gmail.com"
 
-EXPOSE 80 443
+EXPOSE 22 80 443
 
 RUN apt-get update -y
 RUN apt-get -y install lsb-release apt-transport-https ca-certificates wget git
