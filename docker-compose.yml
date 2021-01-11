@@ -5,7 +5,7 @@ services:
     image: rivshiell/phabricator-docker:latest
     restart: always
     ports:
-      - "22:22"
+      - "2222:2222"
       - "80:80"
     depends_on:
       - ph-database
@@ -19,6 +19,7 @@ services:
       - BASE_URI=${BASE_URI}
     volumes: 
       - ph-repo:/var/repo
+  
   ph-database:
     image: mariadb:10.5.1
     restart: always
@@ -27,12 +28,11 @@ services:
       - ./configs/my.cnf:/etc/mysql/my.cnf
     environment:
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+  
   ph-storage:
     image: minio/minio
     restart: always
     command: server /data
-    ports: 
-      - 9000:9000
     volumes: 
       - storage-server:/data
     environment:

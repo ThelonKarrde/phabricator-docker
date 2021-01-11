@@ -2,7 +2,9 @@ FROM debian:buster
 
 LABEL maintainer="aliaksandr.shulyak@gmail.com"
 
-EXPOSE 22 80 443
+EXPOSE 2222 80 443
+
+ENV SSH_PORT 2222
 
 RUN apt-get update -y
 RUN apt-get -y install lsb-release apt-transport-https ca-certificates wget git

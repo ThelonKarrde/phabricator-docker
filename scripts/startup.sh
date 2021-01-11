@@ -12,6 +12,8 @@ sleep 30
 /var/www/phabric/phabricator/bin/config set amazon-s3.access-key $MINIO_SERVER_ACCESS_KEY
 /var/www/phabric/phabricator/bin/config set amazon-s3.endpoint ph-storage:9000
 /var/www/phabric/phabricator/bin/config set amazon-s3.region us-west-1
+#SSH config
+/var/www/phabric/phabricator/bin/config set diffusion.ssh-port $SSH_PORT
 # Update base uri
 /var/www/phabric/phabricator/bin/config set phabricator.base-uri "http://$BASE_URI/"
 sed "s/  server_name phabricator.local;/  server_name $BASE_URI;/g" /etc/nginx/sites-available//phabricator.conf > /etc/nginx/sites-available//phabricator.conf
