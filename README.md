@@ -5,10 +5,6 @@
 This is an unofficial Docker image of Phabricator app.  
 Application configured as a single image with `supervisord` to control all necessary processes inside one docker container.  
 
-## Docker image available for OS/ARCH
-* `linux/amd64` | tag: `latest`
-* `linux/arm` | tag: `armv7`
-
 ## Configuration
 
 To startup Phabricator with a single command you need configured MySQL/MariaDB and S3 storage (Local server or AWS)
@@ -18,7 +14,7 @@ To startup Phabricator with a single command you need configured MySQL/MariaDB a
 docker run \
     --rm \
     -p 80:80 \
-    -p 22:22 \
+    -p 2222:2222 \
     --env MYSQL_HOST=mysqlhost.com \
     --env MYSQL_PORT=3306 \
     --env MYSQL_USER=root \
@@ -39,12 +35,5 @@ export MYSQL_ROOT_PASSWORD=changeme
 docker-compose up -d
 ```
 
-#### `arm` arch:
-```
-export BASE_URI=yourdomain.com
-export MYSQL_ROOT_PASSWORD=changeme
-docker-compose -f docker-compose.armv7.yml up -d
-```
-
 ## Links
-[Docker hub](https://hub.docker.com/repository/docker/rivshiell/phabricator-docker)
+[Docker hub](https://hub.docker.com/r/rivshiell/phabricator-docker)
